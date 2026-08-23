@@ -1,0 +1,12 @@
+# Virtual environment
+venv/
+
+# Secrets
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Vector DB (regenerates from ingestion, don't commit binary data)
+chroma_db/
