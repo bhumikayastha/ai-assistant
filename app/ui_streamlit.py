@@ -1,5 +1,8 @@
 import streamlit as st
 import requests
+import os
+
+API_URL = os.environ.get("API_URL", "http://127.0.0.1:8000")
 
 st.set_page_config(page_title="AI Assistant", page_icon="🤖")
 st.title("AI Assistant")
@@ -8,7 +11,7 @@ query = st.text_input("Ask something:")
 
 if st.button("Send") and query:
     with st.spinner("Thinking..."):
-        resp = requests.post("http://127.0.0.1:8000/chat", json={"query": query})
+        resp = requests.post(f"{API_URL}/chat", json={"query": query})
     if resp.status_code == 200:
         st.write(resp.json()["answer"])
     else:
