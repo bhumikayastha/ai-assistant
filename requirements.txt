@@ -9,3 +9,4 @@ pydantic
 streamlit
 tenacity
 slowapi
+optimum[onnxruntime]
