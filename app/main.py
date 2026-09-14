@@ -57,3 +57,11 @@ async def chat_structured(request: ChatRequest):
 async def chat_tools(request: ChatRequest):
     answer = await asyncio.to_thread(rag_query_with_tools, request.query)
     return {"answer": answer}
+
+from app.agent import run_agentic_query
+
+@app.post("/chat/agentic")
+@limiter.limit("10/minute")
+async def chat_agentic(request: Request, chat_request: ChatRequest):
+    result = await asyncio.to_thread(run_agentic_query, chat_request.query)
+    return result
